@@ -1,16 +1,14 @@
 // Import required java libraries
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
@@ -38,27 +36,12 @@ public class App extends HttpServlet {
         logger.info(newLeague.Name+", "+newLeague.num_Teams+", "+commEmail+", "+Commissioner);
         try
         {
-            boolean b = insertLeague();
-            logger.info(b);
+            insertLeague();
+            logger.info(insertLeague());
         }
         catch(Exception e)
         {
             logger.info("error1: "+e);
-        }
-    }
-    public boolean insertLeague() {
-        try {
-            Connection conn = getConn();
-            logger.info("connection: "+conn);
-            Statement stmt = conn.createStatement();
-            String params = "";
-            String sql = "insert into drafthub.league Values('" + (ID) + "','" + Name + "', '" + ID + "', '" + num_Teams + "', '" + Commissioner + "', '" + commEmail + "')";
-            int rs = stmt.executeUpdate(sql);
-            conn.close();
-            return true;
-        } catch (Exception e) {
-            logger.info("Error:" + e);
-            return false;
         }
     }
 
@@ -72,31 +55,35 @@ public class App extends HttpServlet {
         //logger.info(Name+", "+Password);
     }
 
-
-    public Connection getConn(){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = null;
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1","me13101", "Elemnopee3");
-            logger.info(conn);
-            logger.info("Connected");
-            return conn;
-        }catch(Exception e){
-            logger.info("error2: "+e);
+    public boolean insertLeague() {
+        try {
+            ConnectionManager connectionManager = new ConnectionManager();
+            Connection conn = connectionManager.getConn();
+            //Connection conn = getConn();
+            logger.info("connection: "+conn);
+            Statement stmt = conn.createStatement();
+            String params = "";
+            String sql = "insert into drafthub.league Values('" + (ID) + "','" + Name + "', '" + ID + "', '" + num_Teams + "', '" + Commissioner + "', '" + commEmail + "')";
+            int rs = stmt.executeUpdate(sql);
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            logger.info("Error:" + e);
+            return false;
         }
-        logger.info("DB Not Connected");
-        return null;
     }
 
     public int getID(){
-        Connection conn = getConn();
-        ResultSet res;
-        String sql = "select count(*) from drafthub.league";
-        //logger.info(sql);
+        try {
+            ConnectionManager connectionManager = new ConnectionManager();
+            Connection conn = connectionManager.getConn();
+            ResultSet res;
+            String sql = "select count(*) from drafthub.league";
+            //logger.info(sql);
+            conn.close();
+        }catch (Exception e){
+            logger.info("error3: "+e);
+        }
         return ID;
-    }
-
-    public static void main (String[] args){
-
     }
 }
