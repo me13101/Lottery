@@ -1,0 +1,12 @@
+.nav{
+    background-color: #000;
+    width: 100%;
+}
+.navBtn{
+    background-image: linear-gradient(to bottom,#dbdbdb 0,#e2e2e2 100%);
+    color: #000;
+    background-color: #dbdbdb !important;
+}
+#navbar01{
+    cursor: pointer;
+}

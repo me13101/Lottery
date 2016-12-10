@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html ng-app="home">
+<head>
+    <title>Fantasy Draft Lottery</title>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="/WebContent/js/home.js"></script>
+    <link rel="stylesheet" href="/WebContent/css/home.css">
+    <link rel="stylesheet" href="/WebContent/css/nav.css">
+</head>
+<body ng-controller="homeController">
+<div class="container home">
+    <div class="row">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div ng-include="'navbar.html'" class="nav"></div>
+        </nav>
+    </div>
+    <div class="row jtronRow">
+        <div class="container homeJtron">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-5">
+                            <img src="/WebContent/images/carson-wentz-vs-cincinnati.jpg" alt="Paris" width="400" height="300">
+                        </div>
+                        <div class="col-md-2 space"></div>
+                        <div class="col-md-5">
+                            <h1 class="head1">
+                                Draft Hub<br>
+                            </h1>
+                            <h5 class="head5">
+                                Welcome to Draft Hub! Stop pulling names out of a hat. Create a
+                                league with Draft Hub and<br> follow live as your fantasy draft
+                                order is randomly generated. Host the draft with google hangouts<br>
+                                or skype, or simply login and view where you will be drafting!
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row newsRow">
+        <div class="col-md-12">
+            <div class="col-md-5">
+                <h2>Lottery news</h2>
+                <table id="newsTable" class="table table-striped">
+                    <tr ng-repeat="Object in newsArticles">
+                        <td>
+                            <h5><a href={{Object.url}}>{{Object.title}}</a></h5>
+                            <!--<h5>{{newsArticles.sources}}</h5>-->
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="currentLeagues col-md-5">
+                <h2>Current Leagues</h2>
+                <table id="leaguesTable" class="table table-striped">
+                    <tr ng-repeat="Object in leagues">
+                        <td>
+                            <!--<h5><a href={{Object.url}}>{{Object.title}}</a></h5>-->
+                            <!--<h5>{{newsArticles.sources}}</h5>-->
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</body>
+</html>
