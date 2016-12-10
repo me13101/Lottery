@@ -3,7 +3,7 @@
 import javax.servlet.http.HttpServlet;
 
 
-public class League extends HttpServlet {
+public class League {
 	static final long serialVersionUID = 42L;
 
 	public String Name;

@@ -26,7 +26,7 @@ public class App extends HttpServlet {
 			HttpServletResponse response)
 					throws ServletException, IOException
 	{
-		File file = new File("C:/xampp/tomcat/webapps/ROOT/Log.txt");
+		File file = new File("C:/xampp - DEV/tomcat/webapps/log/Log.txt");
 		PrintWriter printWriter = new PrintWriter(file);
 		Name = request.getParameter("league_name");
 		Commissioner = request.getParameter("commName"); 
@@ -39,26 +39,52 @@ public class App extends HttpServlet {
 
 		try
 		{
-			Connection conn = getConn();
-			//Statement stmt = conn.createStatement();
-			String params = "";
-			String sql = "insert into drafthub.league Values('"+(ID)+"','"+Name+"', '"+ID+"', '"+num_Teams+"', '"+Commissioner+"', '"+commEmail+"')";
-			//int rs = stmt.executeUpdate(sql);
-		
-			//conn.close();
+            boolean b = insertLeague();
+            printWriter.println("insert league: "+b);
+//			Connection conn = getConn();
+//			printWriter.println("conn: "+conn);
+//			Statement stmt = conn.createStatement();
+//			String params = "";
+//			String sql = "insert into drafthub.league Values('"+(ID)+"','"+Name+"', '"+ID+"', '"+num_Teams+"', '"+Commissioner+"', '"+commEmail+"')";
+//			int rs = stmt.executeUpdate(sql);
+//			printWriter.println(rs);
+//			conn.close();
 		}
 		catch(Exception e)
 		{
 			printWriter.println("Error:"+e);
+			printWriter.close();
 		}
 		printWriter.close();
+	}
+	public boolean insertLeague() {
+		try {
+			File file = new File("C:/xampp - DEV/tomcat/webapps/log/Log.txt");
+			PrintWriter printWriter = new PrintWriter(file);
+			try {
+				Connection conn = getConn();
+				Statement stmt = conn.createStatement();
+				String params = "";
+				String sql = "insert into drafthub.league Values('" + (ID) + "','" + Name + "', '" + ID + "', '" + num_Teams + "', '" + Commissioner + "', '" + commEmail + "')";
+				int rs = stmt.executeUpdate(sql);
+
+				conn.close();
+                return true;
+			} catch (Exception e) {
+				printWriter.println("Error:" + e);
+                return false;
+			}
+		}catch(Exception e){
+			System.out.println(e);
+            return false;
+		}
 	}
 	
 	public void doPost(HttpServletRequest request,
 			HttpServletResponse response)
 					throws ServletException, IOException
 	{
-		File file = new File("C:/xampp/tomcat/webapps/ROOT/Log.txt");
+		File file = new File("C:/xampp - DEV/tomcat/webapps/log/Log.txt");
 		PrintWriter printWriter = new PrintWriter(file);
 		Name = request.getParameter("league_name"); 
 		Commissioner = request.getParameter("commName"); 
@@ -71,13 +97,14 @@ public class App extends HttpServlet {
 	
 	public Connection getConn(){
 		try{
-			File file = new File("C:/xampp/tomcat/webapps/ROOT/Connection_Log.txt");
+			File file = new File("C:/xampp - DEV/tomcat/webapps/log/Connection_Log.txt");
 			PrintWriter printWriter = new PrintWriter(file);
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = null;
-				//conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1","me13101", "Elemnopee3");
-				printWriter.println("Connected");
+				conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1","me13101", "Elemnopee3");
+                printWriter.println(conn);
+                printWriter.println("Connected");
 				printWriter.close();
 				return conn;
 			}catch(Exception e){
@@ -92,7 +119,7 @@ public class App extends HttpServlet {
 	
 	public int getID(){
 		try{
-			File file = new File("C:/xampp/tomcat/webapps/ROOT/Connection_Log.txt");
+			File file = new File("C:/xampp - DEV/tomcat/webapps/log/Connection_Log.txt");
 			PrintWriter printWriter = new PrintWriter(file);
 			
 			Connection conn = getConn();
