@@ -2,55 +2,57 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import org.apache.log4j.Logger;
 
 // Extend HttpServlet class
 public class Authent extends HttpServlet {
 	static final long serialVersionUID = 42L;
 	public static String email, pswd, userID, userName, leagueID, leagueName;
+	static Logger logger = Logger.getLogger(Authent.class);
 
-	public Authent(String email,String pswd,String userID,String userName,String leagueID,String leagueName){
-		this.email = email;
-		this.email = pswd;
-		this.email = userID;
-		this.email = userName;
-		this.email = leagueID;
-		this.email = leagueName;
+    //public Authent(String email,String pswd,String userID,String userName,String leagueID,String leagueName){
+    public Authent(){
+//		this.email = email;
+//		this.pswd = pswd;
+//		this.userID = userID;
+//		this.userName = userName;
+//		this.leagueID = leagueID;
+//		this.leagueName = leagueName;
 	}
 	public void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 					throws ServletException, IOException
 	{
-		
-		File file = new File("C:/xampp2/tomcat/webapps/ROOT/Authent.txt");
-		PrintWriter printWriter = new PrintWriter(file);
+
 		try{
 		email = request.getParameter("email");
 		pswd = request.getParameter("password");
 		
 		if (checkDB(email, pswd) == true){
-			response.setContentType("text/html");
+            //response.getWriter();
+			//response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			out.println("true");
+			out.print("true");
 			out.close();
 		}
 		else{
-			response.setContentType("text/html");
+			//response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			out.println("false");
+			out.print("false");
 			out.close();
 		}
-		
-		printWriter.println(email+" : "+pswd);
-		printWriter.close();
+			//logger.info("Authent: "+email+" : "+pswd);
 		}catch(Exception e){
-			printWriter.println(e);
-			printWriter.close();
+			//logger.info("Authent: "+e);
 		}
 	}
 	
@@ -58,8 +60,6 @@ public class Authent extends HttpServlet {
 			HttpServletResponse response)
 					throws ServletException, IOException
 	{
-		File file = new File("C:/xampp2/tomcat/webapps/ROOT/Authent.txt");
-		PrintWriter printWriter = new PrintWriter(file);
 		try{
 		userName = request.getParameter("userName");
 		leagueName = request.getParameter("leagueName");
@@ -70,78 +70,59 @@ public class Authent extends HttpServlet {
 		if (checkDB(email, pswd) == true){
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			out.println("fount");
+			out.print("fount");
 			out.close();
 		}
 		else{
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			if (newUser(email, pswd, userID, userName, leagueID, leagueName)== true){
-				out.println("successful");
+				out.print("successful");
 			}
 			else{
-				out.println("failed");
+				out.print("failed");
 			}
 			out.close();
 		}
-		
-		printWriter.println(email+" : "+pswd);
-		printWriter.close();
+
+			//logger.info("Authent: "+email+" : "+pswd);
 		}catch(Exception e){
-			printWriter.println(e);
-			printWriter.close();
+			//logger.info("Authent: "+e);
 		}
 	}
 	public static boolean checkDB(String email, String pswd){
-		try{
-			File file = new File("C:/xampp/tomcat/webapps/ROOT/ChechDB_Log.txt");
-			PrintWriter printWriter = new PrintWriter(file);
 			try{
-				Conn conn = new Conn();
+				ConnectionManager conn = new ConnectionManager();
 				Connection c = conn.getConn();
 				//System.out.println(c);
 				PreparedStatement ps = c.prepareStatement("Select * from draftHub.player where email ='"+email+"' and pswd ='"+pswd+"'");
-				ResultSet rs;
+                //PreparedStatement ps = c.prepareStatement("Select * from drafthub.player");
+                ResultSet rs;
 				rs = ps.executeQuery();
 				//System.out.println(rs.getFetchSize());
-				if (rs.getFetchSize() > 0){
+//				if (rs.getFetchSize() > 0){
+                if (rs.next()){
 					return true;
 				}
 				return false;
 			}catch(Exception e){
 				//System.out.println(e);
-				printWriter.println(e);
+				//logger.info("Authent: "+e);
 			}
-		}catch(Exception e){
-			//System.out.println(e);
-		}
 		return false;
 	}
 	public static boolean newUser(String userID, String userName, String leagueID, String leagueName, String email, String pswd){
-		try{
-			File file = new File("C:/xampp/tomcat/webapps/ROOT/ChechDB_Log.txt");
-			PrintWriter printWriter = new PrintWriter(file);
 			try{
 				Conn conn = new Conn();
 				Connection c = conn.getConn();
 				//userID = conn.getID("drafthub.player");
-				System.out.println(userID);
 				int i = Integer.parseInt(userID);
 				int j = Integer.parseInt(leagueID);
-				System.out.println(i);
-				System.out.println(j);
 				PreparedStatement ps = c.prepareStatement("Insert into draftHub.player values('"+i+"', '"+userName+"', '"+j+"', '"+leagueName+"', '"+email+"', SYSDATE(), '"+pswd+"')");
 				return true;
 			}catch(Exception e){
-				System.out.println(e);
-				printWriter.println(e);
+				//logger.info("Authent: "+e);
 			}
-		}catch(Exception e){
-			System.out.println(e);
-		}
 		return false;
-	}
-	public static void main(String[] args){
-		//System.out.println(newUser("1","me13101","1","test league","michael.mathews10@comcast.net","pswwd"));
 	}
 }

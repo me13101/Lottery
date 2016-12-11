@@ -1,16 +1,32 @@
 var login = angular.module('login', []);
-
+var email;
+var pswd;
 login.controller('loginController', function ($scope, $http) {
-//console.log("got here");
+
+function login(response){
+    if (response == "true"){
+        document.cookie = "email="+email;
+        document.cookie = "pswd="+pswd;
+        window.location = "http://localhost:8080/WebContent/home.html";
+    }
+    else {
+        alert("email/password inccorrect, please try again");
+    }
+}
+
 function checkDB(email, pswd){
-$http.get("/Authent?email="+email+"&password="+pswd)
-      .then(function(response) {
-          console.log(response);
-      });
+      var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function(data) {
+              if (xhr.readyState == 4 && xhr.status == 200) {
+              	login(data.target.response);
+              }
+          }
+          xhr.open('GET', "/Authent?email="+email+"&password="+pswd, true);
+          xhr.send(null);
 }
 document.getElementById("signIn").addEventListener("click", function(){
-    var email = $( "#teamSelect" ).val();
-    var pswd = $( "#teamSelect" ).val();
+    email = $( "#inputEmail" ).val();
+    pswd = $( "#inputPassword" ).val();
     checkDB(email, pswd);
 });
 //	var host = window.location.host;

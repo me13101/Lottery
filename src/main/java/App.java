@@ -1,7 +1,6 @@
 // Import required java libraries
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -33,15 +32,15 @@ public class App extends HttpServlet {
         num_Teams = Integer.parseInt(request.getParameter("num_teams"));
         ID = getID();
         League newLeague = new League(Name, null, num_Teams, ID);
-        logger.info(newLeague.Name+", "+newLeague.num_Teams+", "+commEmail+", "+Commissioner);
+        logger.info("App:"+newLeague.Name+", "+newLeague.num_Teams+", "+commEmail+", "+Commissioner);
         try
         {
             insertLeague();
-            logger.info(insertLeague());
+            logger.info("App:"+insertLeague());
         }
         catch(Exception e)
         {
-            logger.info("error1: "+e);
+            logger.info("App:"+"error1: "+e);
         }
     }
 
@@ -52,7 +51,7 @@ public class App extends HttpServlet {
         Name = request.getParameter("league_name");
         Commissioner = request.getParameter("commName");
         Password = request.getParameter("leaguePW");
-        //logger.info(Name+", "+Password);
+        //logger.info("App:"+Name+", "+Password);
     }
 
     public boolean insertLeague() {
@@ -60,7 +59,7 @@ public class App extends HttpServlet {
             ConnectionManager connectionManager = new ConnectionManager();
             Connection conn = connectionManager.getConn();
             //Connection conn = getConn();
-            logger.info("connection: "+conn);
+            logger.info("App:"+"connection: "+conn);
             Statement stmt = conn.createStatement();
             String params = "";
             String sql = "insert into drafthub.league Values('" + (ID) + "','" + Name + "', '" + ID + "', '" + num_Teams + "', '" + Commissioner + "', '" + commEmail + "')";
@@ -68,7 +67,7 @@ public class App extends HttpServlet {
             conn.close();
             return true;
         } catch (Exception e) {
-            logger.info("Error:" + e);
+            logger.info("App:"+"Error:" + e);
             return false;
         }
     }
@@ -79,10 +78,10 @@ public class App extends HttpServlet {
             Connection conn = connectionManager.getConn();
             ResultSet res;
             String sql = "select count(*) from drafthub.league";
-            //logger.info(sql);
+            //logger.info("App:"+sql);
             conn.close();
         }catch (Exception e){
-            logger.info("error3: "+e);
+            logger.info("App:"+"error3: "+e);
         }
         return ID;
     }
