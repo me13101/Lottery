@@ -2,17 +2,17 @@
 var login = angular.module('player', []);
 
 login.controller('playerController', function ($scope, $http) {
-function leagueScreen(){
-	window.location = "http://localhost:8080/WebContent/leagueDashboard.html";
-}
-var leagueName;
+    function leagueScreen(){
+       window.location = "http://localhost:8080/WebContent/leagueDashboard.html";
+   }
+   var leagueName;
 
-function join(){
-	var teamName = $("#teamName").val();
-	var OwnerName = $("#ownerName").val();
-	console.log(leagueName);
-	var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+   function join(){
+       var teamName = $("#teamName").val();
+       var OwnerName = $("#ownerName").val();
+       console.log(leagueName);
+       var xhr = new XMLHttpRequest();
+       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
         	//leagueScreen();
         }

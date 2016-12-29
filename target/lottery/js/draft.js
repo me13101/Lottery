@@ -11,9 +11,9 @@ function lottery(){
 	xhr.open('GET', '/Draft?league_name='+leagueName+'&num_teams='+numTeams+'&commName='+commName, true);
 	xhr.send(null);
 }
-var draft = angular.module('draft', []);
+var draft = angular.module('lottery', []);
 
-draft.controller('draftController', function ($scope, $http) {
+draft.controller('lotteryController', function ($scope, $http) {
 
 
 });

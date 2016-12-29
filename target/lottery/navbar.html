@@ -1,47 +1,57 @@
-<script src="/WebContent/js/nav.js"></script>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <!--<div class="col-md-3">-->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed"
-                        data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                        aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span> <span
-                        class="icon-bar"></span> <span class="icon-bar"></span> <span
-                        class="icon-bar"></span>
-                </button>
-                <!--<button class="navbar-brand" onclick=getURL("home")>Draft Hub</button>-->
-                <!--<a class="navbar-brand" href="javascript:getURL('home')">Draft Hub</a>-->
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a class="navbar-brand" id="navbar01">Draft Hub</a></li>
-                </ul>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" id="navbar01">Draft Hub</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <div class="col-sm-2">
+                        <button id="lottery" class="btn btn-primary navBtn smBtn">Quick Lottery</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="createLeague" class="btn btn-primary navBtn smBtn">Create
+                            League</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="joinLeague" class="btn btn-primary navBtn smBtn">Join
+                            League</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="account" class="btn btn-primary navBtn smBtn">Account</button>
+                    </div>
+                    <!--<form class="navbar-form navbar-right">-->
+                        <!--<div id="login">-->
+                            <!--<div class="form-group">-->
+                                <!--<input type="text" placeholder="Email" class="form-control smBtn">-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<input type="password" placeholder="Password" class="form-control smBtn">-->
+                            <!--</div>-->
+                            <!--<button type="submit" class="btn btn-success smBtn">Sign in</button>-->
+                        <!--</div>-->
+                    <!--</form>-->
+                </div><!--/.navbar-collapse -->
             </div>
-            <!--</div>-->
-            <div class="col-md-2">
-                <button id="quicklottery" class="btn btn-primary navBtn">Quick Lottery</button>
-            </div>
-            <div class="col-md-2">
-                <button id="createLeague" class="btn btn-primary navBtn">Create
-                    League</button>
-            </div>
-            <div class="col-md-2">
-                <button id="joinLeague" class="btn btn-primary navBtn">Join
-                    League</button>
-            </div>
-            <div class="col-md-2">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><button class="btn btn-primary navBtn" id="login">login</button></li>
-                </ul>
-            </div>
-            <div class="col-md-2">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><button class="btn btn-primary navBtn" id="account">Account</button></li>
-                </ul>
-            </div>
-            <!--</div>-->
-            <!--</div>-->
-            <!--/.nav-collapse -->
         </div>
     </div>
-</div>
+</nav>
+<script rel="stylesheet" src="/WebContent/js/nav.js"></script>
+</body>
+</html>

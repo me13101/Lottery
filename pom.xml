@@ -39,6 +39,12 @@
       <version>5.1.38</version>
     </dependency>
 
+    <dependency>
+      <groupId>javax.json</groupId>
+      <artifactId>javax.json-api</artifactId>
+      <version>1.0</version>
+    </dependency>
+
 
   </dependencies>
 
@@ -49,7 +55,7 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <configuration>
-            <outputDirectory>C:\xampp - DEV\tomcat\webapps\ROOT\WebContent</outputDirectory>
+            <outputDirectory>C:\xampp - DEV\tomcat\webapps\ROOT</outputDirectory>
           </configuration>
         </plugin>
       </plugins>

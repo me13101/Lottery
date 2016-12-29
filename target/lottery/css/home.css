@@ -14,31 +14,48 @@
     color: white !important;
 }
 
-.head5{
+.head6{
     color: white;
 }
 .homeJtron{
     width: 100%;
-    height: 350px;
+    height: 20%;
     margin-left: 0px;
     margin-right: 0px;
     padding-left: 10px;
     padding-right: 10px;
 }
-.home{
-    width: 100%;
-    height: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-.jtronRow{
-    margin-botton: 20px;
-}
+
 .newsRow{
     margin-top: 40px;
 }
 .space{
     width: 20px;
 }
+.jtronImg {
+    margin-right: 20px;
+}
+.jtronTxt {
+    margin: 0px;
+}
+img{
+    width: 300px;
+    height: 250px;
+}
+.smBtn{
+        width: 100px;
+        margin-right: 0px;
+        padding: 5px;
+    }
+    @media only screen and (max-width: 765px) {
+        .jtronTxt {
+            width: 100%;
+            margin: 0px;
+        }
+        .home{
+            margin-left: 0px;
+            margin-right: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
