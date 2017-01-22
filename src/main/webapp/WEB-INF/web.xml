@@ -39,25 +39,25 @@
         <url-pattern>/App</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>Draft</servlet-name>
-        <servlet-class>Draft</servlet-class>
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>Draft</servlet-name>-->
+        <!--<servlet-class>Draft</servlet-class>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>Draft</servlet-name>
-        <url-pattern>/Draft</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Draft</servlet-name>-->
+        <!--<url-pattern>/Draft</url-pattern>-->
+    <!--</servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>Join</servlet-name>
-        <servlet-class>Join</servlet-class>
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>Join</servlet-name>-->
+        <!--<servlet-class>Join</servlet-class>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>Join</servlet-name>
-        <url-pattern>/Join</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Join</servlet-name>-->
+        <!--<url-pattern>/Join</url-pattern>-->
+    <!--</servlet-mapping>-->
 
     <servlet>
         <servlet-name>Authent</servlet-name>
@@ -69,6 +69,14 @@
         <url-pattern>/Authent</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Lottery</servlet-name>
+        <servlet-class>Lottery</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>Lottery</servlet-name>
+        <url-pattern>/Lottery</url-pattern>
+    </servlet-mapping>
 
 </web-app>

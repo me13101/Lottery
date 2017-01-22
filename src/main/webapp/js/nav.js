@@ -13,11 +13,11 @@
 //}
 
 document.getElementById("createLeague").addEventListener("click", function(){
-	window.location = "http://localhost:8080/WebContent/commCreateLeague.html";
+	window.location = "commCreateLeague.html";
 });
 
 document.getElementById("joinLeague").addEventListener("click", function(){
-  window.location = "http://localhost:8080/WebContent/playerDashboard.html";
+  window.location = "playerDashboard.html";
 });
 
 //document.getElementById("login").addEventListener("click", function(){
@@ -25,9 +25,9 @@ document.getElementById("joinLeague").addEventListener("click", function(){
 //	});
 
 document.getElementById("lottery").addEventListener("click", function(){
-    window.location = "http://localhost:8080/WebContent/lottery.html";
+    window.location = "lottery.html";
 });
 document.getElementById("navbar01").addEventListener("click", function(){
-    window.location = "http://localhost:8080/WebContent/home.html";
+    window.location = "home.html";
     });
 

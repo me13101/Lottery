@@ -55,7 +55,7 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <configuration>
-            <outputDirectory>C:\xampp - DEV\tomcat\webapps\ROOT</outputDirectory>
+            <outputDirectory>C:\xampp - DEV\tomcat\webapps</outputDirectory>
           </configuration>
         </plugin>
       </plugins>

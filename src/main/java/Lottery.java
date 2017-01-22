@@ -32,6 +32,8 @@ public class Lottery extends HttpServlet {
             Commissioner = request.getParameter("commName");
             num_Teams = Integer.parseInt(request.getParameter("num_teams"));
             ownerList = request.getParameterValues("ownerList");
+            logger.info("num_teams: "+num_Teams);
+            logger.info("ownerList: "+ownerList);
             //logger.info(Arrays.toString(ownerList));
             Object[] order = runLottery(ownerList, num_Teams);
             logger.info("order: " + order);
@@ -58,8 +60,8 @@ public class Lottery extends HttpServlet {
         List<String> order = new ArrayList<String>();
         List<String> ownersList = new ArrayList<String>(Arrays.asList(owners));
 
-        logger.info("owners[0]: " + owners[0]);
-        logger.info("ownerList: " + ownersList);
+        //logger.info("owners[0]: " + owners[0]);
+        //logger.info("ownerList: " + ownersList);
 
         int i = 1;
         int count = 1;
